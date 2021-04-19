@@ -2,7 +2,7 @@
 
 Golang Configuration tool that support YAML, JSON, TOML, Shell Environment (Supports Go 1.10+)
 
-[![wercker status](https://app.wercker.com/status/9ebd3684ff8998501af5aac38a79a380/s/master "wercker status")](https://app.wercker.com/project/byKey/9ebd3684ff8998501af5aac38a79a380)
+[![wercker status](https://app.wercker.com/status/9ebd3684ff8998501af5aac38a79a380/s/master 'wercker status')](https://app.wercker.com/project/byKey/9ebd3684ff8998501af5aac38a79a380)
 
 ## Usage
 
@@ -11,7 +11,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/jinzhu/configor"
+	"github.com/conku/configor"
 )
 
 var Config = struct {
@@ -36,20 +36,20 @@ func main() {
 }
 ```
 
-With configuration file *config.yml*:
+With configuration file _config.yml_:
 
 ```yaml
 appname: test
 
 db:
-    name:     test
-    user:     test
-    password: test
-    port:     1234
+  name: test
+  user: test
+  password: test
+  port: 1234
 
 contacts:
-- name: i test
-  email: test@test.com
+  - name: i test
+    email: test@test.com
 ```
 
 ## Debug Mode & Verbose Mode
@@ -86,14 +86,14 @@ configor.New(&configor.Config{AutoReload: true, AutoReloadCallback: func(config 
 
 # Advanced Usage
 
-* Load mutiple configurations
+- Load mutiple configurations
 
 ```go
 // Earlier configurations have higher priority
 configor.Load(&Config, "application.yml", "database.json")
 ```
 
-* Return error on unmatched keys
+- Return error on unmatched keys
 
 Return an error on finding keys in the config file that do not match any fields in the config struct.
 In the example below, an error will be returned if config.toml contains keys that do not match any fields in the ConfigStruct struct.
@@ -105,7 +105,7 @@ Note that for json files, setting ErrorOnUnmatchedKeys to true will have an effe
 err := configor.New(&configor.Config{ErrorOnUnmatchedKeys: true}).Load(&ConfigStruct, "config.toml")
 ```
 
-* Load configuration by environment
+- Load configuration by environment
 
 Use `CONFIGOR_ENV` to set environment, if `CONFIGOR_ENV` not set, environment will be `development` by default, and it will be `test` when running tests with `go test`
 
@@ -136,7 +136,7 @@ $ CONFIGOR_ENV=production go test
 configor.New(&configor.Config{Environment: "production"}).Load(&Config, "config.json")
 ```
 
-* Example Configuration
+- Example Configuration
 
 ```go
 // config.go
@@ -146,7 +146,7 @@ $ go run config.go
 // Will load `config.example.yml` automatically if `config.yml` not found and print warning message
 ```
 
-* Load From Shell Environment
+- Load From Shell Environment
 
 ```go
 $ CONFIGOR_APPNAME="hello world" CONFIGOR_DB_NAME="hello world" go run config.go
@@ -161,10 +161,10 @@ $ CONFIGOR_ENV_PREFIX="WEB" WEB_APPNAME="hello world" WEB_DB_NAME="hello world" 
 configor.New(&configor.Config{ENVPrefix: "WEB"}).Load(&Config, "config.json")
 ```
 
-* Anonymous Struct
+- Anonymous Struct
 
 Add the `anonymous:"true"` tag to an anonymous, embedded struct to NOT include the struct name in the environment
-variable of any contained fields.  For example:
+variable of any contained fields. For example:
 
 ```go
 type Details struct {
@@ -179,7 +179,7 @@ type Config struct {
 With the `anonymous:"true"` tag specified, the environment variable for the `Description` field is `CONFIGOR_DESCRIPTION`.
 Without the `anonymous:"true"`tag specified, then environment variable would include the embedded struct name and be `CONFIGOR_DETAILS_DESCRIPTION`.
 
-* With flags
+- With flags
 
 ```go
 func main() {
@@ -203,9 +203,9 @@ You can help to make the project better, check out [http://gorm.io/contribute.ht
 
 **jinzhu**
 
-* <http://github.com/jinzhu>
-* <wosmvp@gmail.com>
-* <http://twitter.com/zhangjinzhu>
+- <http://github.com/jinzhu>
+- <wosmvp@gmail.com>
+- <http://twitter.com/zhangjinzhu>
 
 ## License
 
